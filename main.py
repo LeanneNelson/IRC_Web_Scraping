@@ -10,8 +10,8 @@ def get_irc(irc, key):
     soup = bs(requests.get("https://www.law.cornell.edu/uscode/text/26/" + irc.upper()).text, "lxml")
     body = soup.find("div", class_="section")
     for a in body.findAll('a', href=True):
-        a.href = "https://www.law.cornell.edu" + str(a.href)
-    sections = body.findAll(text=re.compile("section.*\d+"))
+        a["href"] = "https://www.law.cornell.edu" + str(a["href"])
+    sections = body.findAll(string=re.compile("section.*\d+"))
     st.markdown(body, unsafe_allow_html=True)
     for codes in sections:
         text = codes.getText()
