@@ -172,10 +172,13 @@ with input_col:
         if is_valid(["me"]):
             if float(ss.me) > .075 * float(ss.agi):
                 itemized_deduction += float(ss.me) - .075 * float(ss.agi)
-        ss.id = str(itemized_deduction)
+        if itemized_deduction > 0:
+            ss.id = str(itemized_deduction)
 
-        # Pre-QBI Taxable Income
-        ti = float(ss.agi) - max(float(ss.id), float(ss.sd))
+            # Pre-QBI Taxable Income
+            ti = float(ss.agi) - max(float(ss.id), float(ss.sd))
+        else:
+            ti = float(ss.agi)-float(ss.sd)
         ss.ti = str(ti)
 
         # Qualified Business Income Deduction
