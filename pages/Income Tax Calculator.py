@@ -181,7 +181,6 @@ with input_col:
         else:
             ti = float(ss.agi)-float(ss.sd)
         ss.ti = str(ti)
-        st.write(ti)
 
         # Qualified Business Income Deduction
         if is_valid(["ww", "qbi", "basis"]):
