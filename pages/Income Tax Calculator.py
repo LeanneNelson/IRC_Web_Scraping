@@ -175,11 +175,13 @@ with input_col:
         if itemized_deduction > 0:
             ss.id = str(itemized_deduction)
 
-            # Pre-QBI Taxable Income
+        # Pre-QBI Taxable Income
+        if is_valid(["id"]):
             ti = float(ss.agi) - max(float(ss.id), float(ss.sd))
         else:
             ti = float(ss.agi)-float(ss.sd)
         ss.ti = str(ti)
+        st.write(ti)
 
         # Qualified Business Income Deduction
         if is_valid(["ww", "qbi", "basis"]):
